@@ -1,4 +1,4 @@
-# 🤖 AI Document Summarizer
+#  AI Document Summarizer
 
 > A smart summarization app powered by Google Gemini API — supports English & Arabic, with adjustable summary length.
 
