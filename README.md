@@ -1,33 +1,41 @@
-#  AI Document Summarizer
+# AI Document Summarizer
 
-> A smart summarization app powered by Google Gemini API — supports English & Arabic, with adjustable summary length.
+A Streamlit app that summarizes pasted text using the Google Gemini API.
+Supports English and Arabic, with adjustable summary length.
 
-![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=flat&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=flat&logo=google&logoColor=white)
+## Features
 
----
+- Summarize pasted articles, documents, and other text
+- Choose English or Arabic output
+- Select a short, medium, or detailed summary
+- Download the summary as a text file
+- Change the Gemini model through Model settings
+- Keep the generated summary visible across interface interactions
 
-## ✨ Features
+## Tech Stack
 
-- 📄 Paste any text and get an instant AI summary
-- 🌐 Supports **English** and **Arabic**
-- 📏 Choose summary length: Short / Medium / Detailed
-- ⬇️ Download summary as a text file
-- ⚡ Powered by **Gemini 2.0 Flash**
+- Python
+- Streamlit
+- Google Gen AI SDK (`google-genai`)
 
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 
 ```bash
 git clone https://github.com/Montajab98/ai-document-summarizer.git
 cd ai-document-summarizer
-python3 -m venv venv
-source venv/bin/activate
-pip install streamlit google-generativeai
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+On Windows, activate the virtual environment with:
+
+```powershell
+.venv\Scripts\Activate.ps1
 ```
 
 ### Run
@@ -36,31 +44,64 @@ pip install streamlit google-generativeai
 streamlit run app.py
 ```
 
-### Usage
+## Usage
 
-1. Get a free API Key from [aistudio.google.com](https://aistudio.google.com)
-2. Paste your API Key in the app
-3. Paste any text
-4. Choose language and length
-5. Click **✨ Summarize**
+1. Create a Gemini API key in [Google AI Studio](https://aistudio.google.com/).
+2. Enter your API key in the app.
+3. Under **Model settings**, select a model available for your API key.
+4. Choose the summary language and length.
+5. Paste your text and click **Summarize**.
+6. Optionally download the summary.
 
----
+API access is subject to Google's model availability, quotas, and pricing.
 
-## 🛠️ Tech Stack
+## Model Configuration
 
-| Tool | Purpose |
+The model name can be changed through **Model settings**.
+
+You can also set its initial value with the `GEMINI_MODEL` environment
+variable before starting the app:
+
+```bash
+export GEMINI_MODEL="your-available-model-id"
+streamlit run app.py
+```
+
+Use a model available for your API key that supports content generation.
+If a model is retired or unavailable, update the model name.
+
+## Project Structure
+
+```text
+ai-document-summarizer/
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+## Troubleshooting
+
+| Issue | What to check |
 |---|---|
-| Python | Core language |
-| Streamlit | Web interface |
-| Google Gemini API | LLM summarization |
+| ImportError: cannot import `genai` | Install dependencies from `requirements.txt`. This app uses `google-genai`, not the older `google-generativeai` package. |
+| Model unavailable / 404 | Enter an available model ID in Model settings. |
+| Access denied / 401 or 403 | Check your API key and permissions. |
+| Rate limit or quota / 429 | Check your Gemini API quota and billing. |
+| Empty response | Try different input; the response may have been blocked. |
 
----
+## Privacy and Limitations
 
-## 👨‍💻 Author
+- Your pasted text is sent to Google Gemini for processing.
+- Do not commit API keys to GitHub.
+- This version accepts pasted text; it does not upload or extract files.
+- AI-generated summaries may omit details or contain errors. Review
+  important summaries against the original text.
+- Requested summary lengths are instructions to the model, not strict limits.
 
-**Montajab Al-Hussein**
-AI Engineer | Head of AI & Robotics @ Apex Educational Services
-📍 Sharjah, UAE 🇦🇪
+## Author
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/montajab-al-hussein)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/Montajab98)
+**Montajab Al-Hussein**  
+AI Engineer · Sharjah, UAE
+
+[LinkedIn](https://www.linkedin.com/in/moontajab/) ·
+[GitHub](https://github.com/Montajab98)
